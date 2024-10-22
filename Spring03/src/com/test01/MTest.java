@@ -9,7 +9,8 @@ public class MTest {
 		ApplicationContext factory =
 				new ClassPathXmlApplicationContext("com/test01/applicationContext.xml");
 		
-		
+		AbstractTest test = (AbstractTest)factory.getBean("test");
+		System.out.println(test.dayInfo());
 		
 	}
 
