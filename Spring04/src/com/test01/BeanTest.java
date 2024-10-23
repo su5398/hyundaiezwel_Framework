@@ -1,6 +1,9 @@
 package com.test01;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class BeanTest {
 	public BeanTest() {
@@ -31,6 +34,26 @@ public class BeanTest {
 		}
 	}
 	
+	public void setList(List<String> list) {
+		System.out.println("setlist 호출");
+		for(String s : list) {
+			System.out.println(s);
+		}
+	}
 	
+	public void setMap(Map<String,String>map) {
+		System.out.println("setMap 호출");
+		Collection<String> values = map.values();
+		for(String s : values) {
+			System.out.println(s);
+		}
+	}
+	
+	public void setScore(List<Score> list) {
+		System.out.println("setScore 호출");
+		for(Score s : list) {
+			System.out.println(s);
+		}
+	}
 	
 }
