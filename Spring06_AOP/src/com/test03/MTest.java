@@ -7,16 +7,17 @@ public class MTest {
 
 	public static void main(String[] args) {
 		
-		ApplicationContext factory =
+		ApplicationContext factory = 
 				new ClassPathXmlApplicationContext("com/test03/applicationContext.xml");
 		
-		TV tv = factory.getBean("lgTV",TV.class);
-		tv.powerOn();
-		tv.powerOff();
+		Person s = factory.getBean("student",Person.class);
+		Person t = factory.getBean("teacher",Person.class);
 		
-		tv = (TV)factory.getBean("sam");
-		tv.powerOn();
-		
+		System.out.println("학생");
+		s.classWork();
+		System.out.println("--------");
+		System.out.println("선생");
+		t.classWork();
 	}
 
 }
