@@ -10,6 +10,6 @@
 	<bean id="student" class="com.test05.Student"/>
 	<bean id="teacher" class="com.test05.Teacher"/>
 	
-	<bean id="myAdpect" class="com.test05.MyAspect"/>
+	<bean id="myAspect" class="com.test05.MyAspect"/>
 	
 </beans>
