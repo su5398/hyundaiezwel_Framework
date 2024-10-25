@@ -8,9 +8,6 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<aop:aspectj-autoproxy/>
-
-	<context:annotation-config />
-	<bean id="student" class="com.test06.Student"/>
-	<bean id="teacher" class="com.test06.Teacher"/>
+	<context:component-scan base-package="com/test06" />
 	
 </beans>
