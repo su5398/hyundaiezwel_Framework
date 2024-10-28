@@ -6,6 +6,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<aop:aspectj-autoproxy/>
+	
 	<!-- width:3, height:5 -->
 	<bean id="rectangle" class="com.test.entity.Rectangle">
 		<property name="title" value="사각형"/>
@@ -13,10 +14,21 @@
 		<property name="height" value="5"/>
 	</bean>
 	<bean id="triangle" class="com.test.entity.Triangle">
-		<property name="title" value="삼각형"/>
-		<property name="width" value="3"/>
-		<property name="height" value="5"/>
+		<constructor-arg value="삼각형"/>
+		<constructor-arg value="3"/>
+		<constructor-arg value="5"/>
 	</bean>
 	
 	<bean id="myAspect" class="com.test.aop.MyAspect"/>
+	
+	<!-- 강사님 방법
+	<aop:config>
+		<aop:pointcut expression="execution(* viewSize())" id="viewpoint"/>
+		<aop:aspect ref="myAspect">
+			<aop:before method="before" pointcut-ref="viewpoint"/>
+			<aop:after method="after" pointcut-ref="viewpoint"/>
+		</aop:aspect>
+	</aop:config>
+	-->
+	
 </beans>
