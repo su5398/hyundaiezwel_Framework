@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mapping.mvc.dto.AddressDto;
 
 /**
  * Handles requests for the application home page.
@@ -33,12 +36,36 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/command.do")
-	public String getCommand() {
+	@RequestMapping(value="/command.do",method=RequestMethod.GET)
+	public String getCommand(Model model,String name, @RequestParam("addr")String addr, String phone) {
 		System.out.println("getCommand() method");
+		System.out.println("name: "+name);
+		System.out.println("addr: "+addr);
+		System.out.println("phone: "+phone);
 		
-		return null;
+		AddressDto dto = new AddressDto(name, addr, phone);
+		
+		model.addAttribute("dto",dto);
+		
+		return "getCommand";
 	}
 	
+	@RequestMapping(value="/command.do",method=RequestMethod.POST)
+	public String postCommand(Model model, AddressDto dto) {
+		System.out.println("postCommand() method");
+		System.out.println(dto.getName());
+		System.out.println(dto.getAddr());
+		System.out.println(dto.getPhone());
+		
+		model.addAttribute("dto",dto);
+		
+		return "postcommand";
+	}
+	
+	//score.do 요청을 받아 처리하는 메소드 작성
+	//1. 입력 받은 값은 ScoreDto 객체로 받는다.
+	//2. scoreres.jsp로 응답하고 입력받은 데이터를 출력해 확인한다.
+	@RequestMapping(value="/score.do")
+	public 
 	
 }
