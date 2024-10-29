@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mapping.mvc.dto.AddressDto;
+import com.mapping.mvc.dto.ScoreDto;
 
 /**
  * Handles requests for the application home page.
@@ -65,7 +66,13 @@ public class HomeController {
 	//score.do 요청을 받아 처리하는 메소드 작성
 	//1. 입력 받은 값은 ScoreDto 객체로 받는다.
 	//2. scoreres.jsp로 응답하고 입력받은 데이터를 출력해 확인한다.
-	@RequestMapping(value="/score.do")
-	public 
+
+	@RequestMapping(value="/score.do", method=RequestMethod.POST)
+	public String scoreres (Model model, ScoreDto dto) {
+		
+		model.addAttribute("dto",dto);
+		
+		return "scoreres";
+	}
 	
 }
