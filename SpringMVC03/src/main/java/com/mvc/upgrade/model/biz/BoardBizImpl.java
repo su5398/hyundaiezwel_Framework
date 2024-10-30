@@ -2,13 +2,23 @@ package com.mvc.upgrade.model.biz;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mvc.upgrade.model.dao.BoardDao;
 import com.mvc.upgrade.model.dto.BoardDto;
 
+@Service
 public class BoardBizImpl implements BoardBiz{
 
+	@Autowired
+	private BoardDao dao;
+	
 	@Override
 	public List<BoardDto> selectList() {
-		return null;
+		List<BoardDto> res = dao.selectList();
+		
+		return res;
 	}
 
 	@Override
