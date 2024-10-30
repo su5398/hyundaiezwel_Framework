@@ -23,12 +23,12 @@ public class BoardBizImpl implements BoardBiz{
 
 	@Override
 	public BoardDto selectOne(int myno) {
-		return null;
+		return dao.selectOne(myno);
 	}
 
 	@Override
 	public int insert(BoardDto dto) {
-		return 0;
+		return dao.insert(dto);
 	}
 
 	@Override

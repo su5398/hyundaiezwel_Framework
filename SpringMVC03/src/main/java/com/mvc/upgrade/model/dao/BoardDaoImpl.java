@@ -31,12 +31,34 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Override
 	public BoardDto selectOne(int myno) {
-		return null;
+		//id:selectOne
+		//SELECT * FROM MYBOARD WHERE MYNO=#{myno}
+		
+		//dao,mapper 완성
+		
+		BoardDto dto = null;
+		try {
+			dto = sqlSession.selectOne(NAMESPACE+"selectOne",myno);
+		}catch(Exception e){
+			System.out.println("[error] : select one");
+			e.printStackTrace();
+		}
+		
+		return dto;
 	}
 
 	@Override
 	public int insert(BoardDto dto) {
-		return 0;
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE+"insert",dto);
+		} catch (Exception e) {
+			System.out.println("[error] : insert");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 	@Override

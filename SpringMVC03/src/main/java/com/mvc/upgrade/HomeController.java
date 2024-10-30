@@ -34,4 +34,33 @@ public class HomeController {
 		return "mvclist";
 	}
 	
+	@RequestMapping("/detail.do")
+	public String detail(Model model, int myno) {
+		logger.info("SELECT ONE");
+		
+		model.addAttribute("dto",biz.selectOne(myno));
+		
+		return "mvcdetail";
+	}
+	
+	@RequestMapping("/insertform.do")
+	public String insertForm() {
+		logger.info("INSERT FORM");
+		return "mvcinsert";
+	}
+	
+	@RequestMapping("/insert.do")
+	public String insert(BoardDto dto) {
+		logger.info("INSERT");
+		
+		int res = biz.insert(dto);
+		
+		if(res>0) {
+			
+			return "redirect:list.do";
+		}else {
+			return "redirect:insertform.do";
+		}
+		
+	}
 }
