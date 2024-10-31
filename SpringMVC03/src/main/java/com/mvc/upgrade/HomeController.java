@@ -61,6 +61,45 @@ public class HomeController {
 		}else {
 			return "redirect:insertform.do";
 		}
+	}
+	
+	@RequestMapping("/updateform.do")
+	public String updateForm(Model model, int myno) {
+		logger.info("UPDATE FORM");
+		BoardDto res = biz.selectOne(myno);
+		model.addAttribute("dto",res);
+		return "mvcupdate";
+	}
+	
+	@RequestMapping("/update.do")
+	public String update(int myno, String mytitle, String mycontent) {
+		logger.info("UPDATE");
 		
+		BoardDto dto = new BoardDto();
+		dto.setMyno(myno);
+		dto.setMytitle(mytitle);
+		dto.setMycontent(mycontent);
+		
+		int res = biz.update(dto);
+		
+		if(res>0) {
+			return "redirect:detail.do?myno="+dto.getMyno();
+		}else {
+			return "redirect:update.do?myno="+dto.getMyno();
+		}
+	}
+	
+	//삭제(성공:list페이지로, 실패:detail페이지로) 구현
+	@RequestMapping("/delete.do")
+	public String delete(int myno) {
+		logger.info("DELETE");
+		
+		int res = biz.delete(myno);
+		
+		if(res>0) {
+			return "redirect:list.do";
+		}else {
+			return "redirect:detail.do?myno="+myno;
+		}
 	}
 }

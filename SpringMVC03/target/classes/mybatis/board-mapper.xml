@@ -29,4 +29,16 @@
 		VALUES(SEQ_MY.NEXTVAL, #{myname}, #{mytitle}, #{mycontent}, CURRENT_DATE)
 	</select>
 	
+	<update id="update">
+		UPDATE MYBOARD
+		SET MYTITLE=#{mytitle}, MYCONTENT=#{mycontent}
+		WHERE MYNO=#{myno}
+	</update>
+	
+	<delete id="delete">
+		DELETE 
+		FROM MYBOARD 
+		WHERE MYNO=#{myno}
+	</delete>
+	
 </mapper>

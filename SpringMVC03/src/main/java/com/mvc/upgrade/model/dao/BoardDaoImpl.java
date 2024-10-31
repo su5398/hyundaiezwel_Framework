@@ -62,13 +62,31 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public int upgrade(BoardDto dto) {
-		return 0;
+	public int update(BoardDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"update",dto);
+		} catch (Exception e) {
+			System.out.println("[error] : update");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 	@Override
 	public int delete(int myno) {
-		return 0;
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"delete",myno);
+		} catch (Exception e) {
+			System.out.println("[error] : delete");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 }
