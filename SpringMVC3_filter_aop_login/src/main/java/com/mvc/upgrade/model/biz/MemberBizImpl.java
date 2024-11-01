@@ -14,8 +14,7 @@ public class MemberBizImpl implements MemberBiz {
 	
 	@Override
 	public MemberDto login(MemberDto dto) {
-		
-		return null;
+		return dao.login(dto);
 	}
 	
 }

@@ -15,6 +15,15 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public MemberDto login(MemberDto dto) {
 		
-		return null;
+		MemberDto res = null;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"login",dto);
+		} catch (Exception e) {
+			System.out.println("[error] : login");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 }

@@ -30,7 +30,13 @@
 				contentType:"application/json",
 				dataType:"json",
 				success:function(msg){
-					
+					/*console.log(msg);*/
+					if(msg.check == true){
+						location.href="list.do";
+					}else{
+						$("#loginChk").show();
+						$("#loginChk").html("ID 혹은 PW가 잘못되었습니다.")
+					}
 				},
 				error:function(){
 					alert("통신 실패");

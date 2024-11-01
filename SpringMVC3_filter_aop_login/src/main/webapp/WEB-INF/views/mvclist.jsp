@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h1>list</h1>
+	<h3>${login.membername }님 환영합니다.</h3>
 	<table>
 		<colgroup>
 			<col width="50"/>
