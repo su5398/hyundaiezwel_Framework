@@ -42,8 +42,12 @@ public class MemberController {
 		
 		boolean check = false;
 		if(res != null) {
-			check = true;
-			session.setAttribute("login", res);
+			if(passwordEncoder.matches(dto.getMemberpw(), res.getMemberpw())) {
+				
+				check = true;
+				session.setAttribute("login", res);
+			}
+			
 		}
 		
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
