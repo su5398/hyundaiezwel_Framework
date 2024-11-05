@@ -11,4 +11,9 @@
 		AND MEMBERPW=#{memberpw}
 	</select>
 	
+	<insert id="insert">
+		INSERT INTO MYMEMBER
+		VALUES(SEQ_MEMBER.NEXTVAL, #{memberid},#{memberpw},#{membername})
+	</insert>
+	
 </mapper>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberBiz biz;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/loginform.do")
 	public String loginForm() {
@@ -47,5 +50,28 @@ public class MemberController {
 		map.put("check",check);
 		System.out.println("check: "+check);
 		return map;
+	}
+	
+	@RequestMapping("/registerform.do")
+	public String memberInsertForm() {
+		logger.info("REGISTER FORM");
+		return "mvcregister";
+	}
+	
+	@RequestMapping("/register.do")
+	public String memberInsert(MemberDto dto) {
+		logger.info("REGISTER");
+		
+		String encode = passwordEncoder.encode(dto.getMemberpw());
+		dto.setMemberpw(encode);
+		
+		System.out.println(dto.getMemberpw());
+		
+		int res = biz.insert(dto);
+		if(res>0) {
+			return "redirect:loginform.do";
+		}else {
+			return "redirect:registerform.do";
+		}
 	}
 }

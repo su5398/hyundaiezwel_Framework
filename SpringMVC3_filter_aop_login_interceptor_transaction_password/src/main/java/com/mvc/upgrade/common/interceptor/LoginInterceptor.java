@@ -19,10 +19,12 @@ public class LoginInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 		logger.info("[interceptor] : preHandle");
 		
-		if(request.getRequestURI().contains("/loginform.do") ||
-		   request.getRequestURI().contains("/ajaxlogin.do") ||
-		   request.getSession().getAttribute("login") != null||
-		   request.getRequestURI().contains("/test.do")
+		if(request.getRequestURI().contains("/loginform.do") 	||
+		   request.getRequestURI().contains("/ajaxlogin.do") 	||
+		   request.getSession().getAttribute("login") != null	||
+		   request.getRequestURI().contains("/test.do")		 	||
+		   request.getRequestURI().contains("/registerform.do") ||
+		   request.getRequestURI().contains("/register.do")
 		   ) {
 			return true;
 		}
