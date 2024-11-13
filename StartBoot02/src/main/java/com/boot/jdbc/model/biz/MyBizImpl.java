@@ -16,7 +16,7 @@ public class MyBizImpl implements MyBiz{
 	
 	@Override
 	public List<MyDto> selectList() {
-		return null;
+		return mapper.selectList();
 	}
 
 	@Override

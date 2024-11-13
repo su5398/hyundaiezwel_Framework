@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>index</h1>
+	<h3><a href="myboard/list">List</a></h3>
 </body>
 </html>
