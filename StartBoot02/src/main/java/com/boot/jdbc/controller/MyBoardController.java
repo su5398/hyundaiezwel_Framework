@@ -65,15 +65,32 @@ public class MyBoardController {
 	 myboardlist.jsp로 응답(수정 실패하면 myboardupdate.jsp로 응답)
 	 */
 	
-	@PostMapping("/updateform")
-	public String update(MyDto dto) {
-		int res = biz.insert(dto);
+	@GetMapping("/updateform")
+	public String updateform(Model model, int myno) {
+		
+		MyDto dto = biz.selectOne(myno);
+		model.addAttribute("dto",dto);
+		
+		return "myboardupdate";
+	}
+	
+	@PostMapping("/update")
+	public String updateRes(MyDto dto) {
+		int res = biz.update(dto);
 		if(res>0) {
 			return "redirect:/myboard/list";
 		}else {
-			return "redirect:/myboard/insertform";
+			return "redirect:/myboard/updateform?myno="+dto.getMyno();
 		}
-		
+	}
+	
+	@GetMapping("/delete")
+	public String delete(int myno) {
+		if(biz.delete(myno)>0) {
+			return "redirect:/myboard/list";
+		}else {
+			return "redirect:/myboard/detail?myno="+myno;
+		}
 	}
 	
 }

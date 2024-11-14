@@ -9,13 +9,14 @@
 <body>
 <h1>update</h1>
 <form action="/myboard/update" method="post">
+	<input type="hidden" name="myno" value="${dto.myno }">
 	<table>
 		<tr>
 			<th>MYNAME</th>
 			<td>${dto.myname }</td>
 		</tr>
 		<tr>
-			<th>MYNAME</th>
+			<th>MYTITLE</th>
 			<td><input type="text" name="mytitle" value="${dto.mytitle }"></td>
 		</tr>
 		<tr>
