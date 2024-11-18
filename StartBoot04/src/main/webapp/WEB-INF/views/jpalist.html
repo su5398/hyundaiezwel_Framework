@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>JPA list</h1>
+	<div>
+		<table>
+			<tr>
+				<th>myno</th>
+				<th>myname</th>
+				<th>mytitle</th>
+				<th>mydate</th>
+			</tr>
+			<tr th:if="${list.size()==0}">
+				<td colspan="4">------작성된 글이 존재하지 않습니다------</td>
+			</tr>
+			<tr th:unless="${list.size()==0}" th:each="dto:${list}">
+				<td th:text="${dto.myno}"></td>
+				<td th:text="${dto.myname}"></td>
+				<td th:text="${dto.mytitle}"></td>
+				<td th:text="${dto.mydate}"></td>
+			</tr>
+			<tr>
+				<td colspan="4" align="right">
+					<input type="button" onclick="location.href='insertform'" value="insert">
+				</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

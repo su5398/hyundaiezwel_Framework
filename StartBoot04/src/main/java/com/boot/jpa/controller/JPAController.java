@@ -1,11 +1,13 @@
 package com.boot.jpa.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.boot.jpa.model.dao.JpaDao;
@@ -26,4 +28,18 @@ public class JPAController {
 		System.out.println(list.size());
 		return "jpalist";
 	}
+	
+	@GetMapping("/insertform")
+	public String insertForm() {
+		return "jpainsert";
+	}
+	
+	@PostMapping("/insert")
+	public String insert(JpaEntity dto) {
+		dto.setMydate(new Date());
+		dao.save(dto);
+		return "redirect:list";
+	}
+	
+	
 }
