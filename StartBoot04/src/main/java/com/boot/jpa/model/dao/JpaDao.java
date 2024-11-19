@@ -19,4 +19,8 @@ public interface JpaDao extends JpaRepository<JpaEntity, Integer>{
 	public List<JpaEntity> findAll();
 	
 	public JpaEntity save(JpaEntity dto);
+	
+	public JpaEntity findByMyno(int myno);
+	
+	
 }

@@ -41,5 +41,25 @@ public class JPAController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/detail")
+	public String detail(int myno, Model model) {
+		JpaEntity dto = dao.findByMyno(myno);
+		//findBy필드이름 : 필드 이름 기반으로 조회
+		
+		model.addAttribute("dto",dto);
+		
+		return "jpadetail";
+	}
 	
+	@GetMapping("/updateform")
+	public String updateForm(int myno, Model model) {
+		model.addAttribute("dto", dao.findByMyno(myno));
+		return "jpaupdate";
+	}
+	
+	@PostMapping("/update")
+	public String updateRes(JpaEntity dto) {
+		dao.save(dto);
+		return "redirect:detail?myno="+dto.getMyno();
+	}
 }
