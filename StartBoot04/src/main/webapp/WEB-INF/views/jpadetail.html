@@ -24,8 +24,11 @@
 			<td colspan="4" align="right">
 				<input type="button" onclick="location.href='list'" value="목록">
 				<input type="button" th:onclick="|location.href='updateform?myno=*{myno}'|" value="수정">
+				<input type="button" th:onclick="|location.href='delete?myno=*{myno}'|" value="삭제">
 			</td>
 		</tr>
 	</table>
+	
+	
 </body>
 </html>

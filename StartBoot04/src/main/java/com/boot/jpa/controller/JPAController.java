@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,8 @@ public class JPAController {
 	@GetMapping("/list")
 	public String selectList(Model model) {
 
-		List<JpaEntity> list = dao.findAll();
+		//List<JpaEntity> list = dao.findAll();
+		List<JpaEntity> list = dao.findAll(Sort.by(Sort.Direction.DESC, "myno"));
 		model.addAttribute("list",list);
 		System.out.println(list.size());
 		return "jpalist";
@@ -61,5 +63,12 @@ public class JPAController {
 	public String updateRes(JpaEntity dto) {
 		dao.save(dto);
 		return "redirect:detail?myno="+dto.getMyno();
+	}
+	
+	@GetMapping("/delete")
+	public String delete(int myno) {
+		//dao.deleteByMyno(myno);
+		dao.deleteById(myno);
+		return "redirect:list";
 	}
 }
